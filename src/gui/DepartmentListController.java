@@ -44,6 +44,7 @@ public class DepartmentListController implements Initializable {
 	@FXML
 	private Button btNew;
 	
+	// possivel erro apagar
 	private ObservableList<Department> obsList;
 	
 	@FXML
@@ -93,6 +94,7 @@ public class DepartmentListController implements Initializable {
 			
 			DepartmentFormController controller = loader.getController();
 			controller.setDepartment(obj);
+			controller.setDepartmentService(new DepartmentService());
 			controller.updateFormData();
 			
 			Stage dialogStage = new Stage();
