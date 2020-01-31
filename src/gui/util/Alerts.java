@@ -21,6 +21,7 @@ public class Alerts {
 		alert.setTitle(title);
 		alert.setHeaderText(null);
 		alert.setContentText(content);
-		return alert.showAndWait();
+		
+		return (Optional<ButtonType>) alert.showAndWait();
 	}
 }
