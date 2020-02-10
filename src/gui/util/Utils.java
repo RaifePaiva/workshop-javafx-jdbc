@@ -5,7 +5,6 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.Locale;
-
 import javafx.event.ActionEvent;
 import javafx.scene.Node;
 import javafx.scene.control.DatePicker;
@@ -15,15 +14,21 @@ import javafx.stage.Stage;
 import javafx.util.StringConverter;
 
 public class Utils {
-
 	public static Stage currentStage(ActionEvent event) {
-
 		return (Stage) ((Node) event.getSource()).getScene().getWindow();
 	}
 
 	public static Integer tryParseToInt(String str) {
 		try {
 			return Integer.parseInt(str);
+		} catch (NumberFormatException e) {
+			return null;
+		}
+	}
+
+	public static Double tryParseToDouble(String str) {
+		try {
+			return Double.parseDouble(str);
 		} catch (NumberFormatException e) {
 			return null;
 		}
@@ -44,7 +49,6 @@ public class Utils {
 					}
 				}
 			};
-
 			return cell;
 		});
 	}
@@ -52,7 +56,6 @@ public class Utils {
 	public static <T> void formatTableColumnDouble(TableColumn<T, Double> tableColumn, int decimalPlaces) {
 		tableColumn.setCellFactory(column -> {
 			TableCell<T, Double> cell = new TableCell<T, Double>() {
-
 				@Override
 				protected void updateItem(Double item, boolean empty) {
 					super.updateItem(item, empty);
@@ -64,7 +67,6 @@ public class Utils {
 					}
 				}
 			};
-
 			return cell;
 		});
 	}
@@ -72,7 +74,6 @@ public class Utils {
 	public static void formatDatePicker(DatePicker datePicker, String format) {
 		datePicker.setConverter(new StringConverter<LocalDate>() {
 			DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern(format);
-
 			{
 				datePicker.setPromptText(format.toLowerCase());
 			}
@@ -96,5 +97,4 @@ public class Utils {
 			}
 		});
 	}
-
 }
